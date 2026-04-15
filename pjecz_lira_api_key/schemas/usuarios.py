@@ -2,7 +2,6 @@
 Usuarios, esquemas
 """
 
-import uuid
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict
@@ -11,17 +10,17 @@ from pydantic import BaseModel, ConfigDict
 class UsuarioOut(BaseModel):
     """Esquema para entregar usuarios"""
 
-    autoridad_clave: str
-    autoridad_descripcion: str
-    autoridad_descripcion_corta: str
     distrito_clave: str
     distrito_nombre: str
     distrito_nombre_corto: str
+    autoridad_clave: str
+    autoridad_descripcion: str
+    autoridad_descripcion_corta: str
     email: str
     nombres: str
     apellido_paterno: str
     apellido_materno: str
-    puesto: str
+    puesto: str | None
     model_config = ConfigDict(from_attributes=True)
 
 
@@ -36,7 +35,6 @@ class OneUsuarioOut(BaseModel):
 class UsuarioInDB(UsuarioOut):
     """Usuario en base de datos"""
 
-    id: uuid.UUID
     username: str
     permissions: dict
     hashed_password: str

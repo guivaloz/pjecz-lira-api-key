@@ -31,7 +31,7 @@ class Autoridad(UniversalMixin, table=True):
     es_activo: bool = Field(default=True)
 
     # Hijos
-    siga_sistaemas: list["SigaSistema"] = Relationship(back_populates="autoridad")
+    siga_sistemas: list["SigaSistema"] = Relationship(back_populates="autoridad")
     siga_expedientes: list["SigaExpediente"] = Relationship(back_populates="autoridad")
     usuarios: list["Usuario"] = Relationship(back_populates="autoridad")
 

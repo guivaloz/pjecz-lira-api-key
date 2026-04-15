@@ -14,6 +14,7 @@ class DistritoOut(BaseModel):
     es_distrito_judicial: bool
     es_distrito: bool
     es_jurisdiccional: bool
+    es_activo: bool
     model_config = ConfigDict(from_attributes=True)
 
 

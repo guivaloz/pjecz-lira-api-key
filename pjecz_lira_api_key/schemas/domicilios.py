@@ -11,6 +11,7 @@ class DomicilioOut(BaseModel):
     clave: str
     edificio: str
     domicilio_completo: str
+    es_activo: bool
     model_config = ConfigDict(from_attributes=True)
 
 

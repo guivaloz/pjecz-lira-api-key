@@ -32,6 +32,16 @@ class EntradaSalida(UniversalMixin, table=True):
     tipo: str = Field(max_length=16, index=True)  # TODO: Enum
     direccion_ip: str = Field(max_length=64)
 
+    @property
+    def usuario_email(self):
+        """Email del usuario"""
+        return self.usuario.email
+
+    @property
+    def usuario_nombre(self):
+        """Nombre del usuario"""
+        return self.usuario.nombre
+
     def __repr__(self):
         """Representación"""
         return f"<EntradaSalida {self.id}>"

@@ -30,6 +30,21 @@ class Bitacora(UniversalMixin, table=True):
     descripcion: str = Field(max_length=256)
     url: str = Field(max_length=256)
 
+    @property
+    def modulo_nombre(self):
+        """Nombre del módulo"""
+        return self.modulo.nombre
+
+    @property
+    def usuario_email(self):
+        """Email del usuario"""
+        return self.usuario.email
+
+    @property
+    def usuario_nombre(self):
+        """Nombre del usuario"""
+        return self.usuario.nombre
+
     def __repr__(self):
         """Representación"""
         return f"<Bitacora {self.id}>"
