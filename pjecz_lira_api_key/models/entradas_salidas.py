@@ -13,7 +13,7 @@ from .usuarios import Usuario
 class EntradaSalida(UniversalMixin, table=True):
     """EntradaSalida"""
 
-    TIPOS = {
+    TIPOS: dict = {
         "INGRESO": "Ingresó",
         "SALIO": "Salió",
     }

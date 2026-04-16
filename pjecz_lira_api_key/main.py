@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_pagination import add_pagination
 
 from .config.settings import get_settings
+from .routers.autoridades import autoridades
+from .routers.distritos import distritos
 
 # FastAPI
 app = FastAPI(
@@ -25,6 +27,11 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+
+# Rutas
+app.include_router(distritos)
+app.include_router(autoridades)
+
 
 # Paginación
 add_pagination(app)

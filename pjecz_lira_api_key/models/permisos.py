@@ -14,17 +14,11 @@ from .roles import Rol
 class Permiso(UniversalMixin, table=True):
     """Permiso"""
 
-    VER = 1
-    MODIFICAR = 2
-    CREAR = 3
-    BORRAR = 3
-    ADMINISTRAR = 4
-    NIVELES = {
-        1: "VER",
-        2: "VER y MODIFICAR",
-        3: "VER, MODIFICAR y CREAR",
-        4: "ADMINISTRAR",
-    }
+    VER: int = 1
+    MODIFICAR: int = 2
+    CREAR: int = 3
+    BORRAR: int = 3
+    ADMINISTRAR: int = 4
 
     # Nombre de la tabla
     __tablename__: str = "permisos"
@@ -51,11 +45,6 @@ class Permiso(UniversalMixin, table=True):
     def modulo_nombre(self):
         """Nombre del módulo"""
         return self.modulo.nombre
-
-    @property
-    def nivel_descrito(self):
-        """Nivel descrito"""
-        return self.NIVELES[self.nivel]
 
     def __repr__(self):
         """Representación"""

@@ -12,7 +12,6 @@ class PermisoOut(BaseModel):
     modulo_nombre: str
     nombre: str
     nivel: int
-    nivel_descrito: str
     model_config = ConfigDict(from_attributes=True)
 
 

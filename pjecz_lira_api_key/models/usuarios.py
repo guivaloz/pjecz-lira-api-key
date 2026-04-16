@@ -41,9 +41,6 @@ class Usuario(UniversalMixin, table=True):
     tareas: list["Tarea"] = Relationship(back_populates="usuario")
     usuarios_roles: list["UsuarioRol"] = Relationship(back_populates="usuario")
 
-    # Propiedades
-    permisos_consultados = {}
-
     @property
     def nombre(self):
         """Junta nombres, apellido_paterno y apellido materno"""
@@ -52,17 +49,15 @@ class Usuario(UniversalMixin, table=True):
     @property
     def permisos(self):
         """Entrega un diccionario con todos los permisos"""
-        if len(self.permisos_consultados) > 0:
-            return self.permisos_consultados
-        self.permisos_consultados = {}
+        permisos_dict: dict[str, int] = {}
         for usuario_rol in self.usuarios_roles:
             if usuario_rol.estatus == "A":
                 for permiso in usuario_rol.rol.permisos:
                     if permiso.estatus == "A":
                         etiqueta = permiso.modulo.nombre
-                        if etiqueta not in self.permisos_consultados or permiso.nivel > self.permisos_consultados[etiqueta]:
-                            self.permisos_consultados[etiqueta] = permiso.nivel
-        return self.permisos_consultados
+                        if etiqueta not in permisos_dict or permiso.nivel > permisos_dict[etiqueta]:
+                            permisos_dict[etiqueta] = permiso.nivel
+        return permisos_dict
 
     def can(self, modulo_nombre: str, permission: int):
         """¿Tiene permiso?"""
