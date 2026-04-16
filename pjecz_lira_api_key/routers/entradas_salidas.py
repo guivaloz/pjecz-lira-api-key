@@ -12,7 +12,6 @@ from ..dependencies.authentications import UsuarioInDB, get_current_active_user
 from ..dependencies.database import get_db
 from ..dependencies.fastapi_pagination_custom_page import CustomPage
 from ..models.entradas_salidas import EntradaSalida
-from ..models.permisos import Permiso
 from ..schemas.entradas_salidas import EntradaSalidaOut
 
 entradas_salidas = APIRouter(prefix="/api/entradas_salidas", tags=["usuarios"])

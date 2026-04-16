@@ -11,7 +11,6 @@ from sqlmodel import Session, select
 from ..dependencies.authentications import UsuarioInDB, get_current_active_user
 from ..dependencies.database import get_db
 from ..dependencies.fastapi_pagination_custom_page import CustomPage
-from ..models.permisos import Permiso
 from ..models.roles import Rol
 from ..schemas.roles import RolOut
 

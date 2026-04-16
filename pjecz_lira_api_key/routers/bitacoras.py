@@ -12,7 +12,6 @@ from ..dependencies.authentications import UsuarioInDB, get_current_active_user
 from ..dependencies.database import get_db
 from ..dependencies.fastapi_pagination_custom_page import CustomPage
 from ..models.bitacoras import Bitacora
-from ..models.permisos import Permiso
 from ..schemas.bitacoras import BitacoraOut
 
 bitacoras = APIRouter(prefix="/api/bitacoras", tags=["usuarios"])
