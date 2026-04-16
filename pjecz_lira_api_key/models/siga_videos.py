@@ -43,7 +43,7 @@ class SigaVideo(UniversalMixin, table=True):
     video_duracion: int | None  # Duración en segundos
 
     # Columnas cuando se ha transcrito
-    transcripcion_json: dict | None
+    transcripcion_json: str | None = Field(max_length=1024 * 1024)  # JSON
     transcripcion_txt: str | None = Field(max_length=1024 * 1024)
 
     def __repr__(self):

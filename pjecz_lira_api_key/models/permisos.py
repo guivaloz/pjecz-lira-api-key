@@ -14,12 +14,6 @@ from .roles import Rol
 class Permiso(UniversalMixin, table=True):
     """Permiso"""
 
-    VER: int = 1
-    MODIFICAR: int = 2
-    CREAR: int = 3
-    BORRAR: int = 3
-    ADMINISTRAR: int = 4
-
     # Nombre de la tabla
     __tablename__: str = "permisos"
 

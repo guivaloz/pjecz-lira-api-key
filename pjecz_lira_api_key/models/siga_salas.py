@@ -34,6 +34,14 @@ class SigaSala(UniversalMixin, table=True):
     # Hijos
     siga_videos: list["SigaVideo"] = Relationship(back_populates="siga_sala")
 
+    @property
+    def domicilio_clave(self) -> str:
+        return self.domicilio.clave
+
+    @property
+    def domicilio_edificio(self) -> str:
+        return self.domicilio.edificio
+
     def __repr__(self):
         """Representación"""
         return f"<SigaSala {self.clave}>"

@@ -15,7 +15,7 @@ from ..models.distritos import Distrito
 from ..models.permisos import Permiso
 from ..schemas.distritos import DistritoOut
 
-distritos = APIRouter(prefix="/api/v5/distritos", tags=["distritos"])
+distritos = APIRouter(prefix="/api/distritos", tags=["autoridades"])
 
 
 @distritos.get("", response_model=CustomPage[DistritoOut])
@@ -24,7 +24,7 @@ async def get_distritos(
     database: Annotated[Session, Depends(get_db)],
 ):
     """Paginado de distritos"""
-    if current_user.permissions.get("DISTRITOS", 0) < Permiso.VER:
+    if current_user.permissions.get("DISTRITOS", 0) < 1:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forbidden")
     query = select(Distrito).where(Distrito.estatus == "A").order_by(Distrito.clave)
     return paginate(database, query)

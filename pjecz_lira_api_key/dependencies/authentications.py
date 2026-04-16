@@ -2,7 +2,6 @@
 Authentications
 """
 
-import re
 from datetime import datetime
 from typing import Optional
 
@@ -16,7 +15,6 @@ from ..schemas.usuarios import UsuarioInDB
 from .cryptography_api_key import decode_api_key
 from .database import get_db
 
-API_KEY_REGEXP = r"^\w+\.\w+\.\w+$"
 X_API_KEY = APIKeyHeader(name="X-Api-Key")
 
 
@@ -47,7 +45,7 @@ def get_user(
             apellido_materno=usuario.apellido_materno,
             puesto=usuario.puesto,
             username=usuario.email,
-            permissions=usuario.permisos_consultados,
+            permissions=usuario.permisos,
             hashed_password=usuario.contrasena if usuario.contrasena else "",
             disabled=usuario.estatus != "A",
             api_key=usuario.api_key if usuario.api_key else "",
@@ -61,10 +59,6 @@ def authenticate_user(
     database: Session = Depends(get_db),
 ) -> UsuarioInDB:
     """Autentificar un usuario por su api_key"""
-
-    # Validar con expresión regular
-    if re.match(API_KEY_REGEXP, api_key) is None:
-        raise MyAuthenticationError("La API key no pasó la validación")
 
     # Decodificar
     usuario_email = decode_api_key(api_key)

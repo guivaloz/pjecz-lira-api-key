@@ -22,9 +22,9 @@ class UsuarioRol(UniversalMixin, table=True):
 
     # Claves foráneas
     rol_id: uuid.UUID = Field(foreign_key="roles.id")
-    rol: Rol = Relationship(back_populates="bitacoras")
+    rol: Rol = Relationship(back_populates="usuarios_roles")
     usuario_id: uuid.UUID = Field(foreign_key="usuarios.id")
-    usuario: Usuario = Relationship(back_populates="bitacoras")
+    usuario: Usuario = Relationship(back_populates="usuarios_roles")
 
     # Columnas
     descripcion: str = Field(max_length=256)

@@ -67,7 +67,7 @@ class Usuario(UniversalMixin, table=True):
 
     def can_view(self, modulo_nombre: str):
         """¿Tiene permiso para ver?"""
-        return self.can(modulo_nombre, Permiso.VER)
+        return self.can(modulo_nombre, 1)
 
     def can_edit(self, modulo_nombre: str):
         """¿Tiene permiso para editar?"""

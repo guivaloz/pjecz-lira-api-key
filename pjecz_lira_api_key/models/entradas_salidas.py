@@ -13,11 +13,6 @@ from .usuarios import Usuario
 class EntradaSalida(UniversalMixin, table=True):
     """EntradaSalida"""
 
-    TIPOS: dict = {
-        "INGRESO": "Ingresó",
-        "SALIO": "Salió",
-    }
-
     # Nombre de la tabla
     __tablename__: str = "entradas_salidas"
 
@@ -29,7 +24,7 @@ class EntradaSalida(UniversalMixin, table=True):
     usuario: Usuario = Relationship(back_populates="entradas_salidas")
 
     # Columnas
-    tipo: str = Field(max_length=16, index=True)  # TODO: Enum
+    tipo: str = Field(max_length=16, index=True)  # TODO: TIPOS = { "INGRESO": "Ingresó", "SALIO": "Salió" }
     direccion_ip: str = Field(max_length=64)
 
     @property

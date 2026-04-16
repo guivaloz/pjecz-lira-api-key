@@ -22,7 +22,7 @@ class SigaAgenda(UniversalMixin, table=True):
 
     # Claves foráneas
     siga_expediente_id: uuid.UUID = Field(foreign_key="siga_expedientes.id")
-    siga_expediente: SigaExpediente = Relationship(back_populates="siga_grabaciones")
+    siga_expediente: SigaExpediente = Relationship(back_populates="siga_agendas")
 
     # Columnas
     juez: str = Field(max_length=256)

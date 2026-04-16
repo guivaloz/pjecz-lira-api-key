@@ -1,5 +1,5 @@
 """
-Permisos, rutas
+SIGA Sistemas, rutas
 """
 
 from typing import Annotated
@@ -12,18 +12,19 @@ from ..dependencies.authentications import UsuarioInDB, get_current_active_user
 from ..dependencies.database import get_db
 from ..dependencies.fastapi_pagination_custom_page import CustomPage
 from ..models.permisos import Permiso
-from ..schemas.permisos import PermisoOut
+from ..models.siga_sistemas import SigaSistema
+from ..schemas.siga_sistemas import SigaSistemaOut
 
-permisos = APIRouter(prefix="/api/permisos", tags=["usuarios"])
+siga_sistemas = APIRouter(prefix="/api/siga_sistemas", tags=["siga"])
 
 
-@permisos.get("", response_model=CustomPage[PermisoOut])
-async def get_permisos(
+@siga_sistemas.get("", response_model=CustomPage[SigaSistemaOut])
+async def get_siga_sistemas(
     current_user: Annotated[UsuarioInDB, Depends(get_current_active_user)],
     database: Annotated[Session, Depends(get_db)],
 ):
-    """Paginado de permisos"""
-    if current_user.permissions.get("PERMISOS", 0) < 1:
+    """Paginado de siga_sistemas"""
+    if current_user.permissions.get("SIGA SALAS", 0) < 1:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forbidden")
-    query = select(Permiso).where(Permiso.estatus == "A").order_by(Permiso.nombre)
+    query = select(SigaSistema).where(SigaSistema.estatus == "A")
     return paginate(database, query)

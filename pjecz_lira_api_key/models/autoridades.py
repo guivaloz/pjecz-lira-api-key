@@ -8,6 +8,7 @@ from sqlmodel import Field, Relationship
 
 from ..dependencies.universal_mixin import UniversalMixin
 from .distritos import Distrito
+from .siga_sistemas import SigaSistema
 
 
 class Autoridad(UniversalMixin, table=True):
@@ -22,6 +23,8 @@ class Autoridad(UniversalMixin, table=True):
     # Claves foráneas
     distrito_id: uuid.UUID = Field(foreign_key="distritos.id")
     distrito: Distrito = Relationship(back_populates="autoridades")
+    siga_sistema_id: uuid.UUID = Field(foreign_key="siga_sistemas.id")
+    siga_sistema: SigaSistema = Relationship(back_populates="autoridades")
 
     # Columnas
     clave: str = Field(unique=True, max_length=16)
@@ -31,7 +34,6 @@ class Autoridad(UniversalMixin, table=True):
     es_activo: bool = Field(default=True)
 
     # Hijos
-    siga_sistemas: list["SigaSistema"] = Relationship(back_populates="autoridad")
     siga_expedientes: list["SigaExpediente"] = Relationship(back_populates="autoridad")
     usuarios: list["Usuario"] = Relationship(back_populates="autoridad")
 

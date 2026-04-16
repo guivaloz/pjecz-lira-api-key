@@ -9,8 +9,8 @@ from sqlmodel import Field, Relationship
 from ..dependencies.universal_mixin import UniversalMixin
 
 
-class SigaSistemas(UniversalMixin, table=True):
-    """SigaSistemas"""
+class SigaSistema(UniversalMixin, table=True):
+    """SigaSistema"""
 
     # Nombre de la tabla
     __tablename__: str = "siga_sistemas"
